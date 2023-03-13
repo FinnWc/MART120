@@ -1,0 +1,17 @@
+div{
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	color: blue;
+}
+
+.myClass{
+	font-size: 50px;
+	color: brown;
+	font-weight: bold;
+}
+
+#myID{
+	font-size: 20px;
+	color: chartreuse;
+	font-style: italic;
+}
+
