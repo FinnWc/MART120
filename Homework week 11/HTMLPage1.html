@@ -5,31 +5,91 @@
 	<body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
 		<script>
+			var headX = 100;
+			var headY = 150;
+			var headDiameter = 75;
+			var headSpeed;
+
+			var rightEyeX = 270;
+			var rightEyeY = 142;
+			var rightEyeSpeed;
+
+			var leftEyeX = 230;
+			var leftEyeY = 142;
+			var leftEyeSpeed;
+
+			var bodyX = 195;
+			var bodyY = 188;
+			var bodySpeed;
+
+			var rightArmX = 305;
+			var rightArmY = 188;
+			var rightArmSpeedX = 1;
+			var rightArmSpeedY = 1;
+
+			var size = 20;
+			var count = 0;
+			var sizeDirection = 2;
 			function setup()
 			{
 				createCanvas(500, 600);
-				var circleX = 100;
-				var circleY = 200;
-				var diameter = 50;
+				rightEyeSpeed = floor(random() * 8) + 1;
+				leftEyeSpeed = floor(random() * 8) + 1;
+				headSpeed = floor(random() * 8) + 1;
+				bodySpeed = floor(random() * 8) + 1;
+				rightArmSpeedX = floor(random() * 8) + 1;
+				rightArmSpeedY = floor(random() * 8) + 1;
 			}
 			function draw()
 			{
 				background(120);
+				//head
 				fill(255,204,0);
-				circle(circleX,circleY,diameter);
-				if(x <= 800)
+				circle(headX,headY,headDiameter);
+				headX+=headSpeed;
+				if(headX >= 418 || headX <= 82)
 				{
-					x+=10;
+					headSpeed *= -1;
 				}
+				//body
 				fill(173, 216, 320);
-				rect(195, 188, 110,300);
+				rect(bodyX, bodyY, 110,300);
+				bodyY+=bodySpeed;
+				if(bodyY<=0 || bodyY>=500)
+				{
+					bodySpeed*=-1;
+				}
+				//right eye
 				fill(255,255,255);
-				circle(270,142,10);
+				circle(rightEyeX,rightEyeY,10);
+				rightEyeX+=rightEyeSpeed;
+				if(rightEyeX >= 350 || rightEyeX <= 100)
+				{
+					rightEyeSpeed *= -1;
+				}
+				//left eye
 				fill(255,255,255);
-				circle(230,142,10);
+				circle(leftEyeX,leftEyeY,10);
+				leftEyeY+=leftEyeSpeed;
+				if(leftEyeY <= 0 || leftEyeY >= 500)
+				{
+					leftEyeSpeed *= -1;
+				}
+				//mouth
 				line(270,175,230,175);
+				//right arm
 				fill(124,252,0);
-				rect(305, 188, 30, 170);
+				rect(rightArmX, rightArmY, 30, 170);
+				rightArmX += rightArmSpeedX;
+				rightArmY += rightArmSpeedY;
+				if(rightArmX>418 || rightArmX<=82)
+				{
+					rightArmSpeedX *= -1;
+				}
+				if(rightArmY>418 || rightArmY<=82)
+				{
+					rightArmSpeedY *= -1;
+				}
 				fill(124,252,0);
 				rect(165, 188, 30, 170);
 				fill(223,255,0);
@@ -40,6 +100,14 @@
 				triangle(250,150,260,167,240,167);
 				textSize(32);
 				fill(255,255,255);
+				textSize(size);
+				 size+= sizeDirection;
+				 count++;
+				 if(count > 5)
+				{
+				    sizeDirection *=-1;
+				    count = 0;
+				 }
 				text('Finneas Colescott', 100, 30);
 			}
 		</script>
