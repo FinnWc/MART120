@@ -8,12 +8,19 @@
 			function setup()
 			{
 				createCanvas(500, 600);
+				var circleX = 100;
+				var circleY = 200;
+				var diameter = 50;
 			}
 			function draw()
 			{
 				background(120);
 				fill(255,204,0);
-				circle(250,150,75);
+				circle(circleX,circleY,diameter);
+				if(x <= 800)
+				{
+					x+=10;
+				}
 				fill(173, 216, 320);
 				rect(195, 188, 110,300);
 				fill(255,255,255);
