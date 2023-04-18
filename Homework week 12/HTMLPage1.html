@@ -1,0 +1,53 @@
+﻿<html>
+	<head>
+		<title>First p5.js Page</title>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+		<script>
+			var blockX = 100;
+			var blockY = 150;
+			var blockDiameter = 75;
+			var blockSpeed;
+
+			var block2X = 195;
+			var block2Y = 188;
+			var block2Speed;
+
+			function setup()
+			{
+				createCanvas(500, 600);
+				blockSpeed = floor(random() * 8) + 1;
+				block2Speed = floor(random() * 8) + 1;
+			}
+			function draw()
+			{
+				background(120);
+				//block1
+				fill(255,204,0);
+				circle(blockX,blockY,blockDiameter);
+				blockX+=blockSpeed;
+				if(blockX > 500)
+				{
+					blockX = 0;
+				}
+				else if(blockX < 0)
+				{
+					blockX = 600;
+				}
+				//block2
+				fill(173, 216, 320);
+				rect(block2X, block2Y, 110,300);
+				block2Y+=block2Speed;
+				if(block2Y<=-300)
+				{
+					block2Y = 699;
+				}
+				else if(block2Y>=700)
+				{
+					block2Y = -299;
+				}
+			}
+		</script>
+	</body>
+</html>
