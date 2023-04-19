@@ -5,15 +5,27 @@
 	<body>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
 		<script>
+			//obstacles
+			//block1
 			var blockX = 100;
 			var blockY = 150;
 			var blockDiameter = 75;
 			var blockSpeed;
-
+			//block2
 			var block2X = 195;
 			var block2Y = 188;
 			var block2Speed;
-
+			//character
+			var characterX = 100;
+			var characterY = 100;
+			var characterSpeed = 3;
+			var w = 87;
+			var s = 83; 
+			var a = 65; 
+			var d = 68;
+			//shape when mouse clicked
+			var mouseShapeX;
+			var mouseShapeY;
 			function setup()
 			{
 				createCanvas(500, 600);
@@ -23,6 +35,7 @@
 			function draw()
 			{
 				background(120);
+				//obstacles
 				//block1
 				fill(255,204,0);
 				circle(blockX,blockY,blockDiameter);
@@ -47,6 +60,50 @@
 				{
 					block2Y = -299;
 				}
+				//character
+				fill(66, 245, 233);
+				rect(characterX, characterY, 50, 50);
+				if(keyIsDown(w))
+				{
+					characterY -= characterSpeed;
+				}
+				if(keyIsDown(s))
+				{
+					characterY += characterSpeed;
+				}
+				if(keyIsDown(a))
+				{
+					characterX -= characterSpeed;
+				}
+				if(keyIsDown(d))
+				{
+					characterX += characterSpeed;
+				}
+				//exit door
+				fill(0,0,0);
+				circle(450, 550,100);
+				fill(0,0,0);
+				stroke(6);
+				textSize(30);
+				text("Exit", 425, 480);
+				if(characterX > 400 && characterY > 450)
+				{
+					fill(0);
+					stroke(6);
+					textSize(30);
+					text("You Win!", 300, 300);
+					characterX = 10000;
+					characterY = 10000;
+				}
+				//create shape on mouseclick
+				fill(245, 66, 102);
+				circle(mouseShapeX, mouseShapeY, 50);
+				
+			}
+			function mouseClicked()
+			{
+				mouseShapeX = mouseX;
+				mouseShapeY = mouseY;
 			}
 		</script>
 	</body>
