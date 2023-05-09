@@ -29,8 +29,8 @@
 				//getting random speeds
 				for(var i = 0; i < 100; i++)
 				{
-					obstacleXSpeeds[i] = Math.floor(Math.random() * Math.floor(Math.random() * 5)) + 1);
-					obstacleYSpeeds[i] = Math.floor(Math.random() * Math.floor(Math.random() * 5)) + 1);
+					obstacleXSpeeds[i] = Math.floor(Math.random() * Math.floor(Math.random() * 5)) + 1;
+					obstacleYSpeeds[i] = Math.floor(Math.random() * Math.floor(Math.random() * 5)) + 1;
 					obstacleXs[i] = getRandomNumber(500);
 					obstacleYs[i] = getRandomNumber(600);
 					diameters[i] = getRandomNumber(10);
@@ -105,57 +105,37 @@
 			{
 	        	fill(13, 145, 14);
 				// draw the shape
-				for (var i = 0; i < obstacleXs.length; i++) {
+				for (var i = 0; i < obstacleXs.length; i++)
+				{
 				circle(obstacleXs[i], obstacleYs[i], diameters[i]);
 			    obstacleXSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-			    obstacleYSpeeds[i] = Math.floor(Math.random() * (Math.floor(Math.random() * 5)) + 1);
-			    // move the shape
-                obstacleXs[i] += obstacleXSpeeds[i];
-                obstacleYs[i] += obstacleYSpeeds[i];
-                // check to see if the shape has gone out of bounds
-			    if (obstacleXs[i] > width) {
-			        obstacleXs[i] = 0;
-			    }
-			    if (obstacleXs[i] < 0) {
-			        obstacleXs[i] = width;
-			    }
-			    if (obstacleYs[i] > height) {
-			        obstacleYs[i] = 0;
-			    }
-			    if (obstacleYs[i] < 0) {
-			       obstacleYs[i] = height;
-			    }
-			}	
-		}
-
-			function createExit()
-			{
-				fill(0,0,0);
-				circle(450, 550,100);
-				fill(0,0,0);
-				stroke(6);
-				textSize(30);
-				text("Exit", 425, 480);
+			    obstacleYSpeeds[i] = Math.floor
+			   }
 			}
 
-			function checkIfDone()
-			{
-				if(characterX > 400 && characterY > 450)
-				{
-					fill(0);
-					stroke(6);
-					textSize(30);
-					text("You Win!", 300, 300);
-					characterX = 10000;
-					characterY = 10000;
-				}
-			}
+        function createExit() {
+            fill(0, 0, 0);
+            circle(450, 550, 100);
+            fill(0, 0, 0);
+            stroke(6);
+            textSize(30);
+            text("Exit", 425, 480);
+        }
 
-			function createShapeOnClick()
-			{
-				fill(245, 66, 102);
-				circle(mouseShapeX, mouseShapeY, 50);
-			}
-		</script>
-	</body>
-</html>
+        function checkIfDone() {
+            if (characterX > 400 && characterY > 450) {
+                fill(0);
+                stroke(6);
+                textSize(30);
+                text("You Win!", 300, 300);
+                characterX = 10000;
+                characterY = 10000;
+            }
+        }
+
+        function createShapeOnClick() {
+            fill(245, 66, 102);
+            circle(mouseShapeX, mouseShapeY, 50);
+        }
+    </script>
+</body>
