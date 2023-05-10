@@ -1,0 +1,126 @@
+﻿<html>
+	<head>
+		<title>Final Maze</title>
+	</head>
+	<body>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.1.9/p5.min.js"></script>
+		<script src="Barrier.js"></script>
+		<script>
+			//character
+			var characterX = 20;
+			var characterY = 20;
+			var characterSpeed = 2;
+			var w = 87;
+			var s = 83; 
+			var a = 65; 
+			var d = 68
+			function setup()
+			{
+				createCanvas(500, 600);
+				createCharacter(characterX, characterY);
+				createBarriersM1();
+			}
+			function draw()
+			{
+				background(70, 179, 207);
+				//create borders
+				borders(5);
+				//create character 
+				drawCharacter();
+				characterMovement();
+				//exit door
+				createExit();
+				//check to see if player finishes
+				checkIfDone();
+				createBarriersM1();
+			}
+
+			function createCharacter(x,y){
+				characterX = x;
+				characterY = y;
+			}
+
+			function createBarriersM1()
+			{
+				var barriersM1 = [];
+				var barrier1 = new Barrier(0, 100, 400, 20);
+				var barrier2 = new Barrier(100, 200, 400, 20);
+				var barrier3 = new Barrier(0, 300, 200, 20);
+				var barrier4 = new Barrier(200, 300, 20, 100);
+				var barrier5 = new Barrier(300, 200, 20, 250);
+				barriersM1.push(barrier1);
+				barriersM1.push(barrier2);
+				barriersM1.push(barrier3);
+				barriersM1.push(barrier4);
+				barriersM1.push(barrier5);
+				for(var i = 0; i < barriersM1.length; i++)
+				{
+					barriersM1[i].display();
+				}
+			}
+
+			function createBarriers2()
+			{
+
+			}
+
+
+			function characterMovement()
+			{
+				if(keyIsDown(w))
+				{
+					characterY -= 3;
+				}
+				if(keyIsDown(s))
+				{
+					characterY += 3;
+				}
+				if(keyIsDown(a))
+				{
+					characterX -= 3;
+				}
+				if(keyIsDown(d))
+				{
+					characterX += 3;
+				}
+			}
+
+			function drawCharacter()
+			{
+				fill(110, 110, 110);
+				rect(characterX, characterY, 50, 50);
+			}
+
+			function borders(thickness)
+			{
+				rect(0,0,width,thickness);
+				rect(0,0,thickness,height);
+				rect(0,height-thickness,width, thickness);
+				rect(width-thickness,0,thickness,height);
+			}
+
+			function createExit()
+			{
+				fill(0,0,0);
+				circle(450, 550,100);
+				fill(250,250,250);
+				stroke(6);
+				textSize(30);
+				text("Exit", 425, 480);
+			}
+
+			function checkIfDone()
+			{
+				if(characterX > 400 && characterY > 450)
+				{
+					fill(0);
+					stroke(6);
+					textSize(30);
+					text("You Win!", 300, 300);
+					characterX = 10000;
+					characterY = 10000;
+				}
+			}
+		</script>
+	</body>
+</html>
