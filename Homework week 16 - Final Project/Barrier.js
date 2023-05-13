@@ -13,4 +13,8 @@
 		fill(0, 0, 0);
 		rect(this.x, this.y, this.w, this.h);
 	}
+	changeColor(color)
+	{
+		this.color = color;
+	}
 }

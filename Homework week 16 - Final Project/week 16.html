@@ -14,11 +14,12 @@
 			var s = 83; 
 			var a = 65; 
 			var d = 68
+			var barriersM1 = [];
 			function setup()
 			{
 				createCanvas(500, 600);
 				createCharacter(characterX, characterY);
-				createBarriersM1();
+				createBarriersM1()
 			}
 			function draw()
 			{
@@ -42,7 +43,6 @@
 
 			function createBarriersM1()
 			{
-				var barriersM1 = [];
 				var barrier1 = new Barrier(0, 100, 400, 20);
 				var barrier2 = new Barrier(100, 200, 400, 20);
 				var barrier3 = new Barrier(0, 300, 200, 20);
@@ -58,13 +58,6 @@
 					barriersM1[i].display();
 				}
 			}
-
-			function createBarriers2()
-			{
-
-			}
-
-
 			function characterMovement()
 			{
 				var collided = false;
@@ -87,28 +80,54 @@
 				{
 					characterX += 3;
 				}
-				for(var i = 0; i < barriersM1.length; i++)
+				
+				if(characterTouchesBlack())
 				{
-					var barrier = barriersM1[i];
-					if(
-						newX + 50 > barrier.x &&
-						newX < barrier.x + barrier.w &&
-						newY + 50> barrier.y && 
-						newY < barrier.y + barrier.h
-					)
-					{
-						collided = true;
-						break;
-					}
+					newX = 20;
+					newY = 20;
 				}
-				if(!collided){
-					characterX = newX;
-					characterY = newY;
-				}
-				else{
+				//eventually gave up on the upper approach for colosion detection, tried for a very long time to get it working but was unable.
+				if(characterX > 0 && characterX < 400 && characterY < 120 && characterY > 80)
+				{
 					characterX = 20;
 					characterY = 20;
 				}
+				if(characterX > 100 && characterX < 500 && characterY < 220 && characterY > 180)
+				{
+					characterX = 20;
+					characterY = 20;
+				}
+				if(characterX > 0 && characterX < 200 && characterY < 320 && characterY > 280)
+				{
+					characterX = 20;
+					characterY = 20;
+				}
+				if (characterX > 200 && characterX < 220 && characterY < 400 && characterY > 300) {
+				    characterX = 20;
+                    characterY = 20;
+                }	
+				if (characterX > 280 && characterX < 320 && characterY < 450 && characterY > 200) 
+				{
+					characterX = 20;
+				    characterY = 20;
+				}
+				if(characterX < 0)
+				{
+					characterX = 20;
+					characterY = 20;
+				}
+				if(characterX > 450)
+				{
+					characterX = 20;
+					characterY = 20;
+				}
+				if(characterY < 0)
+				{
+					characterX = 20;
+					characterY = 20;
+				}
+
+				
 			}
 
 			function drawCharacter()
@@ -128,24 +147,43 @@
 			function createExit()
 			{
 				fill(0,0,0);
-				circle(450, 550,100);
-				fill(250,250,250);
+				circle(250, 500,100);
+				fill(66, 245, 221);
 				stroke(6);
 				textSize(30);
-				text("Exit", 425, 480);
+				text("Exit", 225, 505);
+			}
+			//tried for a very long time to get this system to work, instead of having to write out the long series of if statements above for colision detection
+			//I read some articles about doing colosion detection in javascript by detecting the color of an object, in this case black for the barriers, but I just 
+			//seemed unable to find any way to effectively impliment it without finding tons of bugs, would be interested in learning more about this in the future sometime.
+			function characterTouchesBlack()
+			{
+				var characterColor = get(characterX, characterY);
+				var r = characterColor[0];
+				var g = characterColor[1];
+				var b = characterColor[2];
+				if(r == 0 && g == 0 & b == 0)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 
 			function checkIfDone()
 			{
-				if(characterX > 400 && characterY > 450)
+				if(characterY > 450)
 				{
-					fill(0);
+					background(0, 0, 0);
+					fill(255,255,255);
 					stroke(6);
-					textSize(30);
-					text("You Win!", 300, 300);
-					characterX = 10000;
+					textSize(50);
+					text("You Win!", 200, 160);
 					characterY = 10000;
-				}
+
+			}
 			}
 		</script>
 	</body>
